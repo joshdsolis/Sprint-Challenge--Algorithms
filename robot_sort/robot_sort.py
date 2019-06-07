@@ -96,9 +96,27 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # Fill this out
-        pass
+        self.swap_item() ## Start out by picking up the first item in list
+        while True: # Keep going until we break
+            while self.can_move_right(): # While there is space to the right...
+                self.move_right() # Take that space to the right
+                if self.compare_item() == 1: # If the value in the space is less than what robot is holding swap
+                    self.swap_item()
+                else:     # If not, go back and do it again
+                    pass
+            while self.compare_item() != None: ## Will run once robot is all the way to the right
+                self.move_left() ## robot moves back all the way left until reaching or having None
+            self.swap_item() ## Want to pick up/drop at None point
+            if self.can_move_right() and self.compare_item() == None: ## If can move right, and it's at a None point...
+                self.move_right() # Take that move right, and swap for the next item in the list to do it all over again
+                self.swap_item()
+            else:
+                break
 
+
+            
+
+        # Fill this out
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
